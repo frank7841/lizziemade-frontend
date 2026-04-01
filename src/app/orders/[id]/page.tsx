@@ -3,9 +3,11 @@
 import { useParams } from 'next/navigation';
 import { useGetOrderQuery, useGetShipmentQuery } from '@/store/api/apiSlice';
 import { Package, Truck, CheckCircle, Clock, MapPin } from 'lucide-react';
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from 'react';
 
 export default function OrderDetailsPage() {
-    const { id } = useParams();
+    const params = useParams();
+    const id = params.id as string;
     const { data: order, isLoading: orderLoading } = useGetOrderQuery(id as string);
     const { data: shipment, isLoading: shipmentLoading } = useGetShipmentQuery(id as string);
 
@@ -42,7 +44,7 @@ export default function OrderDetailsPage() {
                                 { status: 'shipped', description: 'Package is on its way', location: 'Nairobi Hub', timestamp: new Date().toISOString() },
                                 { status: 'processing', description: 'Order confirmed and being prepared', location: 'Artisan Workshop', timestamp: new Date(Date.now() - 86400000).toISOString() },
                                 { status: 'ordered', description: 'Payment successful', location: 'System', timestamp: new Date(Date.now() - 172800000).toISOString() },
-                            ]).map((event, idx) => (
+                            ]).map((event: { status: string; description: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; location: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; timestamp: string | number | Date; }, idx: number) => (
                                 <div key={idx} className="flex gap-6 group">
                                     <div className="flex flex-col items-center">
                                         <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${idx === 0 ? 'bg-rose-600 border-rose-600 text-white' : 'bg-white border-stone-200 text-stone-300'}`}>

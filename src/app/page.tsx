@@ -56,6 +56,7 @@ export default function Home() {
           {[
             { name: "Amigurumi", color: "bg-blue-50", items: "120+ Items" },
             { name: "Clothing", color: "bg-amber-50", items: "85+ Items" },
+            { name: "Patterns", color: "bg-orange-50", items: "50+ Digital" },
             { name: "Home Decor", color: "bg-teal-50", items: "45+ Items" },
             { name: "Accessories", color: "bg-purple-50", items: "150+ Items" },
           ].map((cat) => (
